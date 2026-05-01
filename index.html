@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Quote — Marine Cargo | Azentio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#EEF1F5;color:#1C3242;font-size:13px;min-height:100vh;}
+
+/* ── TOPBAR ── */
+.topbar{
+  background:#1C3242;height:52px;display:flex;align-items:center;
+  justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:300;
+}
+.topbar-brand{display:flex;align-items:center;gap:4px;}
+.logo-text{color:#fff;font-size:17px;font-weight:700;letter-spacing:-.3px;}
+.logo-dot{width:8px;height:8px;background:#E8500A;border-radius:50%;margin-left:1px;}
+.topbar-center{color:rgba(255,255,255,.45);font-size:12px;letter-spacing:.4px;}
+.topbar-right{display:flex;align-items:center;gap:12px;color:#fff;font-size:12px;}
+.avatar{width:30px;height:30px;background:#E8500A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+
+/* AI Assist nav button — matches ORI */
+.ai-nav-btn{
+  display:flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#3EC9A7,#1976d2);
+  color:#fff;border:none;border-radius:6px;padding:6px 14px;
+  font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;
+  transition:opacity .2s;white-space:nowrap;
+}
+.ai-nav-btn:hover{opacity:.85;}
+.ai-nav-btn svg{width:13px;height:13px;}
+
+/* ── PAGE HEADER ── */
+.page-header{background:#fff;border-bottom:1px solid #E2E8F0;padding:12px 24px 0;}
+.page-header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.page-title{font-size:18px;font-weight:700;color:#1C3242;}
+.page-meta{display:flex;gap:16px;font-size:11.5px;color:#7A8EA0;margin-top:3px;flex-wrap:wrap;align-items:center;}
+.page-meta strong{color:#1C3242;}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;}
+.chip-orange{background:#FFF0EA;color:#E8500A;}
+.chip-ai{background:#E8F9F3;color:#1A7A58;border:1px solid #C0EED8;}
+.btn-outline{border:1.5px solid #1C3242;background:transparent;color:#1C3242;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:.15s;}
+.btn-outline:hover{background:#1C3242;color:#fff;}
+
+/* ── STEPPER ── */
+.stepper-wrap{overflow-x:auto;scrollbar-width:none;padding-bottom:0;}
+.stepper-wrap::-webkit-scrollbar{display:none;}
+.stepper{display:flex;align-items:flex-start;min-width:900px;}
+.step-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;cursor:pointer;padding-bottom:10px;}
+.step-item:not(:last-child)::after{content:'';position:absolute;top:13px;left:calc(50% + 14px);width:calc(100% - 28px);height:2px;background:#E2E8F0;z-index:0;}
+.step-item.done:not(:last-child)::after{background:#3EC9A7;}
+.step-circle{width:28px;height:28px;border-radius:50%;background:#DDE5ED;color:#7A8EA0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;position:relative;z-index:1;transition:.2s;flex-shrink:0;}
+.step-item.done .step-circle{background:#3EC9A7;color:#fff;}
+.step-item.active .step-circle{background:#E8500A;color:#fff;box-shadow:0 0 0 4px rgba(232,80,10,.15);}
+.step-lbl{font-size:10px;color:#7A8EA0;text-align:center;margin-top:5px;max-width:72px;line-height:1.35;}
+.step-item.active .step-lbl{color:#E8500A;font-weight:600;}
+.step-item.done .step-lbl{color:#3EC9A7;}
+
+/* ── LAYOUT — no sidebar, full width with panel-aware padding ── */
+.page-wrap{position:relative;transition:padding-right .3s;}
+.page-wrap.panel-open{padding-right:340px;}
+
+.content{padding:20px 24px;max-width:1100px;}
+
+/* ── STEP VIEWS ── */
+.step-view{display:none;}
+.step-view.active{display:block;}
+
+/* ── OPTION B BANNER — subtle top strip ── */
+.optionb-banner{
+  display:flex;align-items:center;gap:8px;
+  background:#F0FDF9;border:1px solid #C0EED8;border-radius:7px;
+  padding:9px 14px;margin-bottom:16px;font-size:12px;color:#1A7A58;font-weight:500;
+}
+.optionb-banner svg{color:#3EC9A7;flex-shrink:0;}
+
+/* ── SECTION CARD ── */
+.section-card{background:#fff;border:1px solid #E2E8F0;border-radius:10px;margin-bottom:14px;overflow:hidden;}
+.section-head{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;cursor:pointer;user-select:none;border-bottom:1px solid #E2E8F0;}
+.section-head.collapsed{border-bottom:none;}
+.section-head-left{display:flex;align-items:center;gap:10px;}
+.sec-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.sec-icon.blue{background:#EBF2FF;} .sec-icon.orange{background:#FFF0EA;}
+.sec-icon.green{background:#E8F9F3;} .sec-icon.purple{background:#F0ECFF;}
+.sec-icon.gray{background:#F2F5FA;}
+.sec-title{font-size:13.5px;font-weight:700;color:#1C3242;}
+.sec-sub{font-size:11px;color:#7A8EA0;margin-top:1px;}
+.sec-toggle{color:#7A8EA0;font-size:13px;transition:transform .2s;}
+.sec-toggle.closed{transform:rotate(-90deg);}
+.section-body{padding:18px 18px;}
+.section-body.hidden{display:none;}
+
+/* ── FORM GRID ── */
+.grid{display:grid;gap:14px;}
+.g2{grid-template-columns:repeat(2,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g4{grid-template-columns:repeat(4,1fr);}
+.span2{grid-column:span 2;} .span3{grid-column:span 3;} .span4{grid-column:span 4;}
+
+/* ── FIELD ── */
+.form-group{display:flex;flex-direction:column;gap:4px;position:relative;}
+.form-label{font-size:11.5px;font-weight:500;color:#5A6B7A;display:flex;align-items:center;gap:5px;}
+.form-label .req{color:#E03434;margin-left:1px;}
+.form-input,.form-select{
+  border:1.5px solid #DDE5ED;border-radius:6px;padding:8px 11px;
+  font-size:12.5px;color:#1C3242;background:#fff;outline:none;
+  font-family:'Poppins',sans-serif;transition:border-color .15s;
+}
+.form-input:focus,.form-select:focus{border-color:#3EC9A7;}
+.form-input[readonly]{background:#F5F8FA;color:#7A8EA0;}
+.form-input.ai-suggested{border-color:#3EC9A7;background:#F4FDF9;}
+.form-select{cursor:pointer;}
+textarea.form-input{resize:vertical;min-height:72px;}
+.field-hint{font-size:10.5px;color:#7A8EA0;margin-top:2px;}
+
+/* ── AI LABEL BADGE — ORI style ── */
+.ai-label-badge{
+  display:inline-flex;align-items:center;gap:3px;
+  font-size:10px;color:#3EC9A7;font-weight:500;
+  background:#E8F9F3;border-radius:4px;padding:1px 5px;
+  margin-left:2px;
+}
+.ai-label-badge svg{width:9px;height:9px;}
+
+/* ── AI INLINE NUDGE — ORI style ── */
+.ai-inline-nudge{
+  display:flex;align-items:center;gap:5px;
+  margin-top:4px;font-size:10.5px;color:#4A8A6A;font-weight:400;
+}
+.ai-inline-nudge svg{width:10px;height:10px;flex-shrink:0;color:#3EC9A7;}
+.ai-nudge-accept{color:#1976D2;font-weight:600;cursor:pointer;font-size:10.5px;background:none;border:none;font-family:'Poppins',sans-serif;padding:0;}
+.ai-nudge-accept:hover{text-decoration:underline;}
+.ai-nudge-dismiss{color:#A0AEC0;cursor:pointer;font-size:10.5px;background:none;border:none;font-family:'Poppins',sans-serif;padding:0;}
+.ai-nudge-dismiss:hover{color:#7A8EA0;}
+.ai-nudge-sep{color:#DDE5ED;}
+
+/* ── AI SUGGESTION TEXT — softer, no pre-filled value ── */
+.ai-suggestion-text{
+  font-size:10.5px;color:#7A9A8A;margin-top:4px;
+  display:flex;align-items:flex-start;gap:5px;line-height:1.4;flex-wrap:wrap;
+}
+.ai-suggestion-text svg{flex-shrink:0;margin-top:1px;color:#3EC9A7;}
+.ai-suggestion-text .use-btn{color:#1976D2;font-weight:600;cursor:pointer;font-size:10.5px;background:none;border:none;font-family:'Poppins',sans-serif;padding:0;margin-left:3px;}
+.ai-suggestion-text .use-btn:hover{text-decoration:underline;}
+
+/* ── AI RISK / STATUS ROWS ── */
+.ai-risk{border-radius:6px;padding:8px 13px;display:flex;gap:8px;align-items:flex-start;font-size:12px;margin-top:10px;}
+.ai-risk.warn{background:#FFF8EC;border:1px solid #FBCF6E;color:#92400E;}
+.ai-risk.info{background:#E8F9F3;border:1px solid #C0EED8;color:#1A7A58;}
+.ai-risk.danger{background:#FEF2F2;border:1px solid #FDCACA;color:#991B1B;}
+.ai-risk.ok{background:#E8F9F3;border:1px solid #86EFAC;color:#166534;}
+
+/* ── TYPE CARDS ── */
+.type-cards{display:flex;gap:10px;}
+.type-card{flex:1;border:2px solid #E2E8F0;border-radius:8px;padding:12px 14px;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:10px;}
+.type-card:hover{border-color:#8AABDF;background:#F6F9FF;}
+.type-card.selected{border-color:#1C3242;background:#EBF2FF;}
+.type-card-icon{font-size:20px;}
+.type-card strong{font-size:12.5px;font-weight:700;display:block;}
+.type-card span{font-size:11px;color:#7A8EA0;}
+
+/* ── CHECKBOX ── */
+.cb-group{display:flex;flex-wrap:wrap;gap:10px 18px;}
+.cb-item{display:flex;align-items:center;gap:7px;cursor:pointer;user-select:none;}
+.cb-item input[type=checkbox]{display:none;}
+.cb-box{width:15px;height:15px;border:2px solid #DDE5ED;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s;}
+.cb-item input:checked~.cb-box{background:#1C3242;border-color:#1C3242;}
+.cb-item input:checked~.cb-box::after{content:'✓';color:#fff;font-size:9px;font-weight:900;}
+.cb-label{font-size:12.5px;color:#1C3242;}
+
+/* ── POLICY SUMMARY CARD ── */
+.policy-card{background:linear-gradient(135deg,#1C3242,#004BB5);border-radius:9px;padding:14px 18px;color:#fff;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.pc-label{font-size:10px;opacity:.65;text-transform:uppercase;letter-spacing:.5px;}
+.pc-value{font-size:14px;font-weight:700;margin-top:2px;}
+.pc-group{display:flex;gap:24px;}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:#E2E8F0;margin:14px 0;}
+
+/* ── COND BLOCK ── */
+.cond-block{display:none;}
+.cond-block.show{display:block;}
+.pep-block{background:#FFF8EC;border:1px solid #FBCF6E;border-radius:6px;padding:14px;margin-top:10px;}
+
+/* ── READINESS ── */
+.readiness{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #E2E8F0;border-radius:7px;padding:9px 16px;margin-bottom:14px;}
+.readiness-label{font-size:11.5px;color:#7A8EA0;white-space:nowrap;}
+.readiness-bar{flex:1;height:7px;background:#EEF1F8;border-radius:10px;overflow:hidden;}
+.readiness-fill{height:100%;background:linear-gradient(90deg,#E8500A,#F0A500);border-radius:10px;transition:width .5s;}
+.readiness-pct{font-size:12px;font-weight:700;color:#E8500A;white-space:nowrap;}
+.readiness-issues{font-size:11px;color:#7A8EA0;}
+
+/* ── UPLOAD ZONE ── */
+.upload-zone{border:2px dashed #DDE5ED;border-radius:8px;padding:32px;text-align:center;cursor:pointer;transition:.2s;}
+.upload-zone:hover{border-color:#3EC9A7;background:#F4FDF9;}
+.upload-zone .u-icon{font-size:30px;margin-bottom:8px;}
+.doc-row{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;background:#F6F8FC;border-radius:6px;border:1px solid #E2E8F0;margin-bottom:6px;}
+.doc-row .doc-name{font-size:12.5px;}
+.doc-status.req{color:#E03434;font-size:11px;}
+.doc-status.opt{color:#7A8EA0;font-size:11px;}
+
+/* ── STEP PLACEHOLDER ── */
+.step-placeholder{background:#fff;border:2px dashed #E2E8F0;border-radius:10px;padding:60px 40px;text-align:center;color:#7A8EA0;}
+.step-placeholder h3{font-size:17px;margin-bottom:6px;color:#1C3242;}
+
+/* ── INLINE BADGE for tables ── */
+.inline-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;margin-left:6px;vertical-align:middle;white-space:nowrap;}
+.inline-badge.duplicate{background:#FFF3CD;color:#856404;border:1px solid #FFD966;}
+.inline-badge.renewal{background:#E3F2FD;color:#1565C0;border:1px solid #BBDEFB;}
+
+/* ── PHONE GROUP ── */
+.phone-group{display:flex;gap:6px;}
+.phone-group .form-group:first-child{width:72px;min-width:72px;}
+.phone-group .form-group:last-child{flex:1;}
+
+/* ── FOOTER ── */
+.footer{position:sticky;bottom:0;background:#fff;border-top:1px solid #E2E8F0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100;}
+.footer-info{font-size:12px;color:#7A8EA0;}
+.footer-actions{display:flex;gap:8px;}
+.btn{padding:8px 18px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;border:none;transition:.15s;font-family:'Poppins',sans-serif;}
+.btn-ghost{background:transparent;color:#7A8EA0;border:1.5px solid #DDE5ED;}
+.btn-ghost:hover{background:#F5F8FA;}
+.btn-ghost:disabled{opacity:.4;cursor:not-allowed;}
+.btn-save{background:#EBF2FF;color:#003FA5;}
+.btn-save:hover{background:#D6E6FF;}
+.btn-next{background:#E8500A;color:#fff;}
+.btn-next:hover{background:#FF6B1A;}
+
+/* ── AI SIDE PANEL — ORI style ── */
+.ai-panel{
+  position:fixed;top:52px;right:0;bottom:0;width:330px;
+  background:#fff;box-shadow:-4px 0 28px rgba(0,0,0,.10);z-index:900;
+  display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+  border-left:1px solid #E2E8F0;
+}
+.ai-panel.open{transform:translateX(0);}
+.ai-panel-header{
+  background:linear-gradient(135deg,#1C3242 0%,#0f4d3a 100%);
+  padding:14px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+.ai-panel-icon{width:30px;height:30px;background:rgba(62,201,167,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.ai-panel-title{color:#fff;font-size:13.5px;font-weight:700;flex:1;}
+.ai-panel-sub{color:rgba(255,255,255,.5);font-size:10.5px;font-weight:400;}
+.ai-close{background:none;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:17px;padding:4px 6px;border-radius:4px;transition:background .15s;}
+.ai-close:hover{background:rgba(255,255,255,.12);color:#fff;}
+.ai-panel-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
+.ai-card{background:#F7FAFB;border-radius:8px;padding:12px 14px;border:1px solid #E2E8F0;}
+.ai-card-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.ai-card-icon{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.icon-insight{background:#E8F9F3;} .icon-alert{background:#FFF3CD;} .icon-action{background:#E3F2FD;}
+.ai-card-title{font-size:12px;font-weight:700;color:#1C3242;}
+.ai-card-body{font-size:12px;color:#4A5D70;line-height:1.55;font-weight:400;}
+.ai-card-body strong{color:#1C3242;font-weight:600;}
+.ai-chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
+.ai-chip{background:#E8F9F3;color:#1A7A58;font-size:11px;padding:4px 10px;border-radius:12px;cursor:pointer;border:1px solid #C0EED8;transition:.15s;font-weight:500;}
+.ai-chip:hover{background:#3EC9A7;color:#fff;border-color:#3EC9A7;}
+.ai-chip.alert{background:#FFF3CD;color:#856404;border-color:#FFD966;}
+.ai-chip.info{background:#E3F2FD;color:#1565C0;border-color:#BBDEFB;}
+.ai-confidence{display:flex;align-items:center;gap:8px;margin-top:9px;}
+.ai-conf-bar{flex:1;height:4px;background:#E2E8F0;border-radius:2px;overflow:hidden;}
+.ai-conf-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#3EC9A7,#1976D2);}
+.ai-conf-label{font-size:10px;color:#8899AA;white-space:nowrap;font-weight:500;}
+.ai-footer{padding:12px 14px;border-top:1px solid #E2E8F0;flex-shrink:0;}
+.ai-input-wrap{display:flex;gap:7px;align-items:center;}
+.ai-input{flex:1;border:1.5px solid #DDE5ED;border-radius:8px;padding:8px 12px;font-size:12px;color:#1C3242;outline:none;background:#F7FAFB;font-family:'Poppins',sans-serif;}
+.ai-input:focus{border-color:#3EC9A7;background:#fff;}
+.ai-send{background:#3EC9A7;border:none;border-radius:6px;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ai-send:hover{background:#2fb898;}
+.ai-powered{text-align:center;font-size:10px;color:#B0C0D0;margin-top:6px;}
+
+/* ── REVIEW ── */
+.review-section{background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px;margin-bottom:12px;}
+.review-section h4{font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.review-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #F0F4F8;}
+.review-row:last-child{border-bottom:none;}
+.review-key{font-size:12px;color:#7A8EA0;}
+.review-val{font-size:12px;font-weight:600;color:#1C3242;}
+.ai-summary{background:#F0FDF9;border:1px solid #C0EED8;border-radius:8px;padding:14px 16px;margin-bottom:14px;}
+.ai-summary-hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.ai-summary-hdr span{font-size:13px;font-weight:700;color:#1A7A58;}
+.ai-summary p{font-size:12.5px;color:#1C3242;line-height:1.6;}
+
+/* inline spark svg helper */
+.spark-svg{display:inline-flex;align-items:center;color:#3EC9A7;margin-right:1px;}
+</style>
+</head>
+<body>
+
+<!-- ══ TOPBAR ══ -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <span class="logo-text">azentio</span><div class="logo-dot"></div>
+  </div>
+  <div class="topbar-center">HNB-GI &nbsp;·&nbsp; Full Quote Workflow</div>
+  <div class="topbar-right">
+    <div class="avatar">BU</div>
+    <span>BASE.USER</span>
+    <button class="ai-nav-btn" id="ai-nav-btn" onclick="togglePanel()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      AI Assist
+    </button>
+  </div>
+</div>
+
+<!-- ══ PAGE HEADER ══ -->
+<div class="page-header">
+  <div class="page-header-top">
+    <div>
+      <div class="page-title">New Full Quote &nbsp;<span class="chip chip-orange">Draft</span></div>
+      <div class="page-meta">
+        <strong>Product:</strong> Marine Cargo Insurance – Conventional &nbsp;
+        <strong>Inception:</strong> 01/05/2026 &nbsp;
+        <strong>Expiry:</strong> 31/10/2026
+        <span class="chip chip-ai">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          AI Assist Active
+        </span>
+      </div>
+    </div>
+    <button class="btn-outline">🔍 Search Quote / Policy</button>
+  </div>
+  <!-- STEPPER -->
+  <div class="stepper-wrap">
+    <div class="stepper" id="stepper">
+      <div class="step-item active" onclick="goTo(1)"><div class="step-circle" id="sc1">1</div><div class="step-lbl">Customer Details</div></div>
+      <div class="step-item" onclick="goTo(2)"><div class="step-circle" id="sc2">2</div><div class="step-lbl">Upload</div></div>
+      <div class="step-item" onclick="goTo(3)"><div class="step-circle" id="sc3">3</div><div class="step-lbl">Marine Cargo</div></div>
+      <div class="step-item" onclick="goTo(4)"><div class="step-circle" id="sc4">4</div><div class="step-lbl">Policy Forms</div></div>
+      <div class="step-item" onclick="goTo(5)"><div class="step-circle" id="sc5">5</div><div class="step-lbl">Discounts</div></div>
+      <div class="step-item" onclick="goTo(6)"><div class="step-circle" id="sc6">6</div><div class="step-lbl">Tax / Charges</div></div>
+      <div class="step-item" onclick="goTo(7)"><div class="step-circle" id="sc7">7</div><div class="step-lbl">Cover Note</div></div>
+      <div class="step-item" onclick="goTo(8)"><div class="step-circle" id="sc8">8</div><div class="step-lbl">Brokerage</div></div>
+      <div class="step-item" onclick="goTo(9)"><div class="step-circle" id="sc9">9</div><div class="step-lbl">Payor</div></div>
+      <div class="step-item" onclick="goTo(10)"><div class="step-circle" id="sc10">10</div><div class="step-lbl">Business Rule</div></div>
+      <div class="step-item" onclick="goTo(11)"><div class="step-circle" id="sc11">11</div><div class="step-lbl">Quote Review</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE WRAP (panel-aware) ══ -->
+<div class="page-wrap" id="page-wrap">
+<div class="content">
+
+  <!-- ════════ STEP 1 ════════ -->
+  <div class="step-view active" id="step-1">
+
+    <!-- Option B banner -->
+    <div class="optionb-banner">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      AI has pre-filled <strong id="autofill-count">0 fields</strong> from the existing customer record. Review suggestions below.
+    </div>
+
+    <!-- Readiness -->
+    <div class="readiness">
+      <span class="readiness-label">Step completion</span>
+      <div class="readiness-bar"><div class="readiness-fill" id="readiness-fill" style="width:8%"></div></div>
+      <span class="readiness-pct" id="readiness-pct">8%</span>
+      <span class="readiness-issues" id="readiness-issues">&nbsp;· 6 required fields remaining</span>
+    </div>
+
+    <!-- ── 1. Customer Information ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon blue">👤</div>
+          <div><div class="sec-title">Customer Information</div><div class="sec-sub">Identification, VAT type, and source of business</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+
+        <!-- Customer Type -->
+        <div class="form-group" style="margin-bottom:14px;">
+          <label class="form-label">Customer Type <span class="req">*</span></label>
+          <div class="type-cards">
+            <div class="type-card selected" id="ct-corp" onclick="setCustomerType('corporate')">
+              <div class="type-card-icon">🏢</div><div><strong>Corporate</strong><span>Company / Organisation</span></div>
+            </div>
+            <div class="type-card" id="ct-ind" onclick="setCustomerType('individual')">
+              <div class="type-card-icon">🧑</div><div><strong>Individual</strong><span>Personal policyholder</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corporate fields -->
+        <div id="corp-fields">
+          <div class="grid g3" style="margin-bottom:14px;">
+            <div class="form-group span2">
+              <label class="form-label">Corporate Name <span class="req">*</span></label>
+              <input id="corp-name" class="form-input" type="text" placeholder="Type to search existing customers…" oninput="handleCorpName(this.value)">
+              <!-- AI suggestion text (no pre-fill, just a nudge) -->
+              <div class="ai-suggestion-text" id="ai-corp-suggest" style="display:none">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Match found: <strong>HNB Exports (Pvt) Ltd</strong> (CRP-00843)
+                <button class="use-btn" onclick="applyAutofill()">Auto-fill all →</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Customer Code</label>
+              <input id="cust-code" class="form-input" type="text" placeholder="Auto-generated" readonly>
+            </div>
+          </div>
+          <div class="grid g3">
+            <div class="form-group">
+              <label class="form-label">
+                Head Office
+                <span class="ai-label-badge" id="ai-hq-badge" style="display:none">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+                </span>
+              </label>
+              <input id="head-office" class="form-input" type="text" placeholder="Head office">
+              <div class="ai-inline-nudge" id="ai-hq-nudge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                From company registry record ·
+                <button class="ai-nudge-accept" onclick="acceptNudge('ai-hq-nudge','head-office')">Accept</button>
+                <span class="ai-nudge-sep">·</span>
+                <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-hq-nudge','ai-hq-badge','head-office')">Dismiss</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">
+                Source of Business <span class="req">*</span>
+                <span class="ai-label-badge" id="ai-source-badge" style="display:none">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+                </span>
+              </label>
+              <select id="source-biz" class="form-select">
+                <option>Direct</option><option>Agent</option><option>Broker</option><option>Bancassurance</option>
+              </select>
+              <div class="ai-inline-nudge" id="ai-source-nudge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Matched from last 4 quotes ·
+                <button class="ai-nudge-accept" onclick="acceptNudge('ai-source-nudge','source-biz')">Accept</button>
+                <span class="ai-nudge-sep">·</span>
+                <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-source-nudge','ai-source-badge','source-biz')">Dismiss</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sub Status</label>
+              <select class="form-select"><option value="">— Select —</option><option>Active</option><option>Suspended</option></select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Individual fields -->
+        <div id="ind-fields" style="display:none;">
+          <div class="grid g4" style="margin-bottom:14px;">
+            <div class="form-group"><label class="form-label">Salutation</label><select class="form-select"><option>Mr.</option><option>Mrs.</option><option>Ms.</option><option>Dr.</option></select></div>
+            <div class="form-group"><label class="form-label">First Name <span class="req">*</span></label><input class="form-input" type="text" placeholder="First name"></div>
+            <div class="form-group"><label class="form-label">Last Name <span class="req">*</span></label><input class="form-input" type="text" placeholder="Last name"></div>
+            <div class="form-group"><label class="form-label">Date of Birth</label><input class="form-input" type="date"></div>
+          </div>
+          <div class="grid g3">
+            <div class="form-group"><label class="form-label">Customer Code</label><input class="form-input" type="text" readonly placeholder="Auto-generated"></div>
+            <div class="form-group"><label class="form-label">Source of Business <span class="req">*</span></label><select class="form-select"><option>Direct</option><option>Agent</option><option>Broker</option></select></div>
+            <div class="form-group"><label class="form-label">Occupation</label><input class="form-input" type="text" placeholder="Occupation / relationship"></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- VAT -->
+        <div class="grid g4" style="margin-bottom:12px;">
+          <div class="form-group">
+            <label class="form-label">
+              VAT Type <span class="req">*</span>
+              <span class="ai-label-badge" id="ai-vat-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <select id="vat-type" class="form-select">
+              <option value="non">Non Registered VAT</option><option value="reg">Registered VAT</option><option value="exempt">VAT Exempt</option>
+            </select>
+            <div class="ai-inline-nudge" id="ai-vat-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              From customer master record ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-vat-nudge','vat-type')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-vat-nudge','ai-vat-badge','vat-type')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tax ID (TIN)</label>
+            <input id="tin-val" class="form-input" type="text" placeholder="Tax identification no.">
+          </div>
+          <div class="form-group">
+            <label class="form-label">VAT Registration No.</label>
+            <input class="form-input" type="text" placeholder="VAT Reg No.">
+          </div>
+          <div class="form-group">
+            <label class="form-label">SVAT Registration No.</label>
+            <input class="form-input" type="text" placeholder="SVAT Reg No.">
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">Cash Customer</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">VAT Applicable</span></label>
+          <label class="cb-item"><input type="checkbox" onchange="togglePrevInsurer(this.checked)"><div class="cb-box"></div><span class="cb-label">Previously Insured</span></label>
+        </div>
+        <div class="cond-block" id="prev-insurer-block" style="margin-top:10px;">
+          <div class="form-group" style="max-width:340px;">
+            <label class="form-label">Previous Insurance Company</label>
+            <input class="form-input" type="text" placeholder="Enter previous insurer name">
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /Customer Info -->
+
+    <!-- ── 2. Identity & KYC ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon purple">🔐</div>
+          <div><div class="sec-title">Identity & KYC</div><div class="sec-sub">ID verification — AI screens for PEP automatically on entry</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div class="grid g4" style="margin-bottom:14px;">
+          <div class="form-group">
+            <label class="form-label">
+              ID Type <span class="req">*</span>
+              <span class="ai-label-badge" id="ai-idtype-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <select id="id-type" class="form-select" onchange="handleIDTypeChange(this.value)">
+              <option value="">— Select —</option><option>National ID</option><option>Passport</option><option>Business Registration</option><option>Tax ID</option>
+            </select>
+            <div class="ai-inline-nudge" id="ai-idtype-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Business Registration recommended for Corporate ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-idtype-nudge','id-type')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-idtype-nudge','ai-idtype-badge','id-type')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group span2">
+            <label class="form-label">ID Number <span class="req">*</span></label>
+            <input id="id-number" class="form-input" type="text" placeholder="Enter ID number" oninput="handleIDEntry(this.value)">
+            <div class="ai-suggestion-text" id="ai-pep-check" style="display:none">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Screening against PEP watch list…
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Secondary ID Type</label>
+            <select class="form-select"><option value="">— Select —</option><option>Driving License</option><option>Passport</option></select>
+          </div>
+        </div>
+        <div class="grid g3" style="margin-bottom:14px;">
+          <div class="form-group"><label class="form-label">Secondary ID Number</label><input class="form-input" type="text" placeholder="Secondary ID"></div>
+          <div class="form-group">
+            <label class="form-label">
+              Customer Risk Profile
+              <span class="ai-label-badge" id="ai-risk-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <select id="risk-profile" class="form-select"><option>Low</option><option>Medium</option><option>High</option></select>
+            <div class="ai-inline-nudge" id="ai-risk-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Assessed from claim history & PEP result ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-risk-nudge','risk-profile')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-risk-nudge','ai-risk-badge','risk-profile')">Dismiss</button>
+            </div>
+          </div>
+        </div>
+        <div class="ai-risk ok" id="pep-ok-flag" style="display:none">
+          ✅ &nbsp;<span>PEP screening complete — <strong>No matches found</strong>. Risk confirmed as Low.</span>
+        </div>
+        <div class="divider"></div>
+        <div style="font-size:12.5px;font-weight:700;margin-bottom:10px;color:#1C3242;">PEP (Politically Exposed Person) Status</div>
+        <div class="grid g2" style="max-width:460px;">
+          <div class="form-group">
+            <label class="form-label">PEP Status</label>
+            <select class="form-select" onchange="togglePEP(this.value)">
+              <option value="">— Select —</option>
+              <option value="pep">Politically Exposed Person</option>
+              <option value="related">Related to PEP</option>
+              <option value="none">Not a PEP</option>
+            </select>
+          </div>
+        </div>
+        <div class="pep-block cond-block" id="pep-block">
+          <div class="ai-risk warn">⚠️ &nbsp;<span><strong>PEP Flagged</strong> — Compliance review required. Underwriting approval may apply.</span></div>
+          <div class="grid g4" style="margin-top:12px;">
+            <div class="form-group"><label class="form-label">PEP Title</label><input class="form-input" type="text" placeholder="Official title"></div>
+            <div class="form-group span2"><label class="form-label">Function / Level Description</label><input class="form-input" type="text" placeholder="Role and seniority level"></div>
+            <div class="form-group"><label class="form-label">Relationship</label><input class="form-input" type="text" placeholder="e.g. Spouse, Child"></div>
+            <div class="form-group"><label class="form-label">Date Became PEP</label><input class="form-input" type="date"></div>
+            <div class="form-group"><label class="form-label">Appointment Ended</label><input class="form-input" type="date"></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /Identity -->
+
+    <!-- ── 3. Classification ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon orange">🏷️</div>
+          <div><div class="sec-title">Customer Classification</div><div class="sec-sub">Loyalty, relationship tags, and credit terms</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#7A8EA0;margin-bottom:8px;">Relationship Tags</div>
+        <div class="cb-group" style="margin-bottom:16px;">
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">VIP Customer</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">HNBA Staff</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">HNB Staff</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">HNBA Director</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">HNB Group Customer</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">HNBGI Director</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">HNBGI Staff</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">HNB Director</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">Diplomatic Person</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">HNB Leasing Customer</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">Prime Circle Member</span></label>
+          <label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">Call and Go Facility</span></label>
+        </div>
+        <div class="divider"></div>
+        <div class="grid g4">
+          <div class="form-group">
+            <label class="form-label">
+              Loyalty Status
+              <span class="ai-label-badge" id="ai-loyalty-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="loyalty-val" class="form-input" type="text" placeholder="Loyalty tier">
+            <div class="ai-inline-nudge" id="ai-loyalty-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Gold — 3yr clean claim history qualifies ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-loyalty-nudge','loyalty-val')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-loyalty-nudge','ai-loyalty-badge','loyalty-val')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Parent Party</label><input class="form-input" type="text" placeholder="Parent organisation"></div>
+          <div class="form-group"><label class="form-label">Children Party</label><input class="form-input" type="text" placeholder="Subsidiary / child entity"></div>
+          <div class="form-group"><label class="form-label">Related Party Roles</label><input class="form-input" type="text" placeholder="Associated roles"></div>
+          <div class="form-group">
+            <label class="form-label">
+              Credit Limit
+              <span class="ai-label-badge" id="ai-credit-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="credit-limit" class="form-input" type="number" placeholder="0.00">
+            <div class="ai-inline-nudge" id="ai-credit-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Based on 3yr transaction history ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-credit-nudge','credit-limit')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-credit-nudge','ai-credit-badge','credit-limit')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              Credit Days
+              <span class="ai-label-badge" id="ai-days-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="credit-days" class="form-input" type="number" placeholder="0">
+            <div class="ai-inline-nudge" id="ai-days-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Matches agreed credit terms ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-days-nudge','credit-days')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-days-nudge','ai-days-badge','credit-days')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">SVAT Status</label><select class="form-select"><option value="">— Select —</option><option>Active</option><option>Inactive</option></select></div>
+        </div>
+      </div>
+    </div><!-- /Classification -->
+
+    <!-- ── 4. Address ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon green">📍</div>
+          <div><div class="sec-title">Address Information</div><div class="sec-sub">AI auto-fills city, district & state from postal code</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <div class="form-group" style="flex:0 0 auto;min-width:160px;">
+            <label class="form-label">Address Type</label>
+            <select class="form-select"><option>Home</option><option>Business</option><option>Registered Office</option></select>
+          </div>
+        </div>
+        <div class="grid g4">
+          <div class="form-group span2">
+            <label class="form-label">
+              Address Line 1 <span class="req">*</span>
+              <span class="ai-label-badge" id="ai-addr-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="addr1" class="form-input" type="text" placeholder="Street / building name">
+            <div class="ai-inline-nudge" id="ai-addr-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              From customer master record ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-addr-nudge','addr1')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-addr-nudge','ai-addr-badge','addr1')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">P.O. Box No.</label><input class="form-input" type="text" placeholder="P.O. Box"></div>
+          <div class="form-group"><label class="form-label">Address Line 2</label><input class="form-input" type="text" placeholder="Floor / unit / apt"></div>
+          <div class="form-group">
+            <label class="form-label">Postal Code</label>
+            <input id="postal" class="form-input" type="text" placeholder="e.g. 00300" oninput="handlePostal(this.value)">
+            <div class="ai-suggestion-text" id="ai-postal-suggest" style="display:none">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Found: <strong>Colombo 03, Western Province, Sri Lanka</strong>
+              <button class="use-btn" onclick="applyPostal()">Apply</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              City <span class="req">*</span>
+              <span class="ai-label-badge" id="ai-city-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="city-val" class="form-input" type="text" placeholder="City">
+            <div class="ai-inline-nudge" id="ai-city-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Derived from postal code 00300 ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-city-nudge','city-val')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-city-nudge','ai-city-badge','city-val')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              District
+              <span class="ai-label-badge" id="ai-dist-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="district-val" class="form-input" type="text" placeholder="District">
+            <div class="ai-inline-nudge" id="ai-dist-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Derived from postal code ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-dist-nudge','district-val')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-dist-nudge','ai-dist-badge','district-val')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              State / Province
+              <span class="ai-label-badge" id="ai-state-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="state-val" class="form-input" type="text" placeholder="State or province">
+            <div class="ai-inline-nudge" id="ai-state-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Derived from postal code ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-state-nudge','state-val')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-state-nudge','ai-state-badge','state-val')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Country <span class="req">*</span></label>
+            <select id="country-val" class="form-select"><option>Sri Lanka</option><option>India</option><option>Maldives</option><option>Other</option></select>
+          </div>
+        </div>
+      </div>
+    </div><!-- /Address -->
+
+    <!-- ── 5. Insured Details ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon blue">🛡️</div>
+          <div><div class="sec-title">Insured Details</div><div class="sec-sub">Party being insured — AI copies from customer when toggled</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div style="margin-bottom:14px;">
+          <label class="cb-item" onclick="toggleSameAsCustomer()">
+            <input type="checkbox" id="same-as-cb"><div class="cb-box"></div>
+            <span class="cb-label" style="font-weight:600;">Same as Customer &nbsp;
+              <span style="font-size:11px;color:#3EC9A7;font-weight:400;">— AI will copy all customer fields</span>
+            </span>
+          </label>
+        </div>
+        <div id="insured-fields">
+          <div class="grid g4" style="margin-bottom:14px;">
+            <div class="form-group"><label class="form-label">Insured Type <span class="req">*</span></label><select id="ins-type" class="form-select"><option>Corporate</option><option>Individual</option></select></div>
+            <div class="form-group span2"><label class="form-label">Insured / Corporate Name <span class="req">*</span></label><input id="ins-name" class="form-input" type="text" placeholder="Insured entity or person name"></div>
+            <div class="form-group"><label class="form-label">National ID</label><input class="form-input" type="text" placeholder="ID number"></div>
+          </div>
+          <div class="grid g4" style="margin-bottom:14px;">
+            <div class="form-group"><label class="form-label">Debit Note Name</label><input class="form-input" type="text" placeholder="Name on debit note"></div>
+            <div class="phone-group">
+              <div class="form-group"><label class="form-label">Code</label><select class="form-select"><option>94</option><option>91</option><option>1</option></select></div>
+              <div class="form-group"><label class="form-label">Phone #</label><input class="form-input" type="tel" placeholder="Phone number"></div>
+            </div>
+            <div class="phone-group">
+              <div class="form-group"><label class="form-label">Code</label><select class="form-select"><option>94</option><option>91</option><option>1</option></select></div>
+              <div class="form-group"><label class="form-label">Mobile #</label><input class="form-input" type="tel" placeholder="Mobile number"></div>
+            </div>
+            <div class="form-group"><label class="form-label">E-Mail</label><input class="form-input" type="email" placeholder="email@example.com"></div>
+          </div>
+          <div class="grid g4">
+            <div class="form-group span2"><label class="form-label">Address</label><input id="ins-addr" class="form-input" type="text" placeholder="Street address"></div>
+            <div class="form-group"><label class="form-label">City</label><input id="ins-city" class="form-input" type="text" placeholder="City"></div>
+            <div class="form-group"><label class="form-label">Postal Code</label><input class="form-input" type="text" placeholder="Postal code"></div>
+            <div class="form-group"><label class="form-label">District</label><input class="form-input" type="text" placeholder="District"></div>
+            <div class="form-group"><label class="form-label">State</label><input class="form-input" type="text" placeholder="State"></div>
+            <div class="form-group"><label class="form-label">Country</label><select class="form-select"><option>Sri Lanka</option><option>India</option><option>Other</option></select></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /Insured -->
+
+    <!-- ── 6. Policy Terms ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon orange">📅</div>
+          <div><div class="sec-title">Policy Terms</div><div class="sec-sub">Coverage period, currency, and treaty settings</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div class="policy-card">
+          <div><div class="pc-label">Coverage Period</div><div class="pc-value">01 May 2026 → 31 Oct 2026 &nbsp;<span style="opacity:.6;font-size:12px;">184 Days</span></div></div>
+          <div class="pc-group">
+            <div><div class="pc-label">Policy Term</div><div class="pc-value">6 Months</div></div>
+            <div><div class="pc-label">Calculation</div><div class="pc-value">Pro Rate</div></div>
+          </div>
+        </div>
+        <div class="grid g4">
+          <div class="form-group"><label class="form-label">Inception Date <span class="req">*</span></label><input class="form-input" type="date" value="2026-05-01"></div>
+          <div class="form-group"><label class="form-label">Policy Term <span class="req">*</span></label><select class="form-select"><option>1 Month</option><option>3 Months</option><option selected>6 Months</option><option>12 Months</option><option>Custom</option></select></div>
+          <div class="form-group"><label class="form-label">Expiration Date <span class="req">*</span></label><input class="form-input" type="date" value="2026-10-31"></div>
+          <div class="form-group"><label class="form-label">SI Currency Type</label><select class="form-select"><option>Base</option><option>Foreign</option></select></div>
+          <div class="form-group"><label class="form-label">Premium Currency</label><select class="form-select"><option>Base (LKR)</option><option>USD</option><option>EUR</option></select></div>
+          <div class="form-group"><label class="form-label">Commission Currency</label><select class="form-select"><option>Premium Currency</option><option>Base</option></select></div>
+          <div class="form-group"><label class="form-label">Treaty Apportionment</label><select class="form-select"><option>Yes</option><option>No</option></select></div>
+          <div class="form-group"><label class="form-label">DNR Reason</label><input class="form-input" type="text" placeholder="Do Not Renew reason (if any)"></div>
+        </div>
+        <div class="form-group" style="margin-top:14px;"><label class="form-label">Remarks</label><textarea class="form-input" placeholder="Any notes or special conditions…"></textarea></div>
+      </div>
+    </div><!-- /Policy Terms -->
+
+    <!-- ── 7. Quote Settings ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon purple">📊</div>
+          <div><div class="sec-title">Quote Settings</div><div class="sec-sub">Payment window, validity, and quotation terms</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div class="grid g4">
+          <div class="form-group">
+            <label class="form-label">
+              Payor PPW Days
+              <span class="ai-label-badge" id="ai-ppw-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="ppw-days" class="form-input" type="number" value="14">
+            <div class="ai-inline-nudge" id="ai-ppw-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Matches customer credit terms (14 days) ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-ppw-nudge','ppw-days')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-ppw-nudge','ai-ppw-badge','ppw-days')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Quote Valid Days</label>
+            <input id="quote-valid" class="form-input" type="number" value="30" oninput="handleQuoteValid(this.value)">
+            <div class="ai-suggestion-text" id="ai-qvalid-hint" style="display:none">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span id="ai-qvalid-text">30 days is standard for Marine Cargo quotes.</span>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Calculation Type</label><select class="form-select"><option>Pro Rate</option><option>Short Rate</option><option>Flat</option></select></div>
+          <div class="form-group"><label class="form-label">Quotation Terms</label><select class="form-select"><option>Indicative Terms</option><option>Firm Terms</option><option>Binding Terms</option></select></div>
+          <div class="form-group"><label class="form-label">Cover Note Required?</label><select class="form-select"><option>No</option><option>Yes</option></select></div>
+          <div class="form-group"><label class="form-label">Manual Cover No.</label><input class="form-input" type="text" placeholder="Manual cover number"></div>
+          <div class="form-group"><label class="form-label">Manual Quotation No.</label><input class="form-input" type="text" placeholder="Manual quotation number"></div>
+        </div>
+      </div>
+    </div><!-- /Quote Settings -->
+
+    <!-- ── 8. Additional Info ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon gray">📂</div>
+          <div><div class="sec-title">Additional Information</div><div class="sec-sub">Business context and special acceptance</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div class="grid g4" style="margin-bottom:14px;">
+          <div class="form-group">
+            <label class="form-label">Old Policy No.</label>
+            <input id="old-policy" class="form-input" type="text" placeholder="Previous policy reference" oninput="handleOldPolicy(this.value)">
+            <div class="ai-suggestion-text" id="ai-renewal-suggest" style="display:none">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Renewal detected — <strong id="ai-renewal-text">Policy MC-2025-04821 expired 30 Apr 2026</strong>. Set Business Type to Renewal?
+              <button class="use-btn" onclick="applyRenewal()">Yes, apply</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              Business Occupation
+              <span class="ai-label-badge" id="ai-occ-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="biz-occ" class="form-input" type="text" placeholder="Nature of business" oninput="handleBizOcc(this.value)">
+            <div class="ai-suggestion-text" id="ai-occ-suggest" style="display:none">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Suggested: <strong id="ai-occ-val">Import / Export Trading</strong> — inferred from company name & policy history.
+              <button class="use-btn" onclick="applyBizOcc()">Use this</button>
+            </div>
+            <div class="ai-inline-nudge" id="ai-occ-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Inferred from customer profile ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-occ-nudge','biz-occ')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-occ-nudge','ai-occ-badge','biz-occ')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group span2">
+            <label class="form-label">
+              Countries of Operation
+              <span class="ai-label-badge" id="ai-coo-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="countries-op" class="form-input" type="text" placeholder="Enter countries (comma-separated)">
+            <div class="ai-suggestion-text" id="ai-coo-suggest" style="display:none">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Previous policies show routes to: <strong>Singapore, UAE, India</strong>
+              <button class="use-btn" onclick="applyCountries()">Apply</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Joint Policy Holder</label><input class="form-input" type="text" placeholder="Joint holder name"></div>
+          <div class="form-group">
+            <label class="form-label">
+              Business Type
+              <span class="ai-label-badge" id="ai-btype-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <select id="biz-type" class="form-select">
+              <option value="">— Select —</option><option>New Business</option><option>Renewal</option><option>Endorsement</option>
+            </select>
+            <div class="ai-inline-nudge" id="ai-btype-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Renewal — matched from policy history ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-btype-nudge','biz-type')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-btype-nudge','ai-btype-badge','biz-type')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Workflow Reference No.</label><input class="form-input" type="text" placeholder="Workflow ref"></div>
+          <div class="form-group"><label class="form-label">Quotation Issued Date</label><input class="form-input" type="date"></div>
+        </div>
+        <div class="divider"></div>
+        <label class="cb-item" style="margin-bottom:14px;"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">Special Acceptance — flag for underwriter review</span></label>
+        <div class="divider"></div>
+        <div style="font-size:12.5px;font-weight:700;margin-bottom:8px;">Loss Limit Information</div>
+        <div class="grid g2" style="max-width:320px;">
+          <div class="form-group"><label class="form-label">Policy Level Loss Limit</label><input class="form-input" type="number" readonly placeholder="Auto-computed"><span class="field-hint">Computed from coverage in Step 3</span></div>
+        </div>
+      </div>
+    </div><!-- /Additional -->
+
+    <!-- ── 9. Business References ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon blue">🤝</div>
+          <div><div class="sec-title">Business References</div><div class="sec-sub">Introducers and policy contact details</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#7A8EA0;margin-bottom:8px;">Introducers</div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="form-group">
+            <label class="form-label">
+              Introducer 1 <span class="req">*</span>
+              <span class="ai-label-badge" id="ai-intro-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="intro1" class="form-input" type="text" placeholder="Primary introducer">
+            <div class="ai-inline-nudge" id="ai-intro-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Used in last 4 quotes ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-intro-nudge','intro1')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-intro-nudge','ai-intro-badge','intro1')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Introducer 2</label><input class="form-input" type="text" placeholder="Secondary introducer"></div>
+          <div class="form-group"><label class="form-label">Introducer 3</label><input class="form-input" type="text" placeholder="Third introducer"></div>
+          <div class="form-group"><label class="form-label">Introducer 4</label><input class="form-input" type="text" placeholder="Fourth introducer"></div>
+        </div>
+        <div class="divider"></div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#7A8EA0;margin-bottom:8px;">Policy Contact</div>
+        <div class="grid g3">
+          <div class="form-group">
+            <label class="form-label">
+              Contact Number
+              <span class="ai-label-badge" id="ai-pphone-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="policy-phone" class="form-input" type="tel" placeholder="Policy contact phone">
+            <div class="ai-inline-nudge" id="ai-pphone-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Copied from customer master ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-pphone-nudge','policy-phone')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-pphone-nudge','ai-pphone-badge','policy-phone')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              Email for Policy
+              <span class="ai-label-badge" id="ai-pemail-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <input id="policy-email" class="form-input" type="email" placeholder="Policy correspondence email">
+            <div class="ai-inline-nudge" id="ai-pemail-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Copied from customer master ·
+              <button class="ai-nudge-accept" onclick="acceptNudge('ai-pemail-nudge','policy-email')">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-pemail-nudge','ai-pemail-badge','policy-email')">Dismiss</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Address of Policy</label><input class="form-input" type="text" placeholder="Correspondence address"></div>
+        </div>
+        <div style="margin-top:10px;"><label class="cb-item"><input type="checkbox"><div class="cb-box"></div><span class="cb-label">Forward all correspondence to policy contact</span></label></div>
+        <div class="grid g4" style="margin-top:14px;">
+          <div class="form-group"><label class="form-label">Salutation</label><select class="form-select"><option>Mr.</option><option>Mrs.</option><option>Ms.</option></select></div>
+          <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="First name"></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Last name"></div>
+          <div class="form-group"><label class="form-label">Occupation / Relationship</label><input class="form-input" type="text" placeholder="Role or relationship"></div>
+        </div>
+      </div>
+    </div><!-- /References -->
+
+    <!-- ── 10. Directors / Shareholders ── -->
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left">
+          <div class="sec-icon purple">👥</div>
+          <div><div class="sec-title">Directors & Shareholders</div><div class="sec-sub">Beneficial owners and corporate governance details</div></div>
+        </div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div id="director-list">
+          <div class="grid g4" style="margin-bottom:14px;">
+            <div class="form-group"><label class="form-label">Type of Party</label><input class="form-input" type="text" placeholder="Director / Shareholder"></div>
+            <div class="form-group"><label class="form-label">ID Type</label><select class="form-select"><option value="">— Select —</option><option>National ID</option><option>Passport</option></select></div>
+            <div class="form-group"><label class="form-label">ID Number</label><input class="form-input" type="text" placeholder="ID number"></div>
+            <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="email@company.com"></div>
+            <div class="form-group span2"><label class="form-label">Address Line 1</label><input class="form-input" type="text" placeholder="Street address"></div>
+            <div class="form-group"><label class="form-label">City</label><input class="form-input" type="text" placeholder="City"></div>
+            <div class="form-group"><label class="form-label">Country</label><select class="form-select"><option>Sri Lanka</option><option>India</option></select></div>
+            <div class="form-group"><label class="form-label">PEP Status</label><select class="form-select"><option value="">— Select —</option><option>PEP</option><option>Related to PEP</option><option>Not a PEP</option></select></div>
+            <div class="form-group"><label class="form-label">Customer Risk Profiling</label><select class="form-select"><option>Low</option><option>Medium</option><option>High</option></select></div>
+          </div>
+        </div>
+        <button class="btn btn-ghost" onclick="addDirector()" style="margin-top:4px;font-size:12px;">+ Add Another Director / Shareholder</button>
+      </div>
+    </div><!-- /Directors -->
+
+  </div><!-- /step-1 -->
+
+  <!-- ════════ STEP 2: UPLOAD ════════ -->
+  <div class="step-view" id="step-2">
+    <div class="optionb-banner">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Upload KYC documents — AI will extract and map field values automatically.
+    </div>
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left"><div class="sec-icon blue">📄</div><div><div class="sec-title">Document Upload</div><div class="sec-sub">Attach required documents for this quote</div></div></div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div class="upload-zone" onclick="alert('File picker opens here.')">
+          <div class="u-icon">☁️</div>
+          <p style="font-size:13px;"><strong>Click to upload</strong> or drag and drop</p>
+          <p style="font-size:11px;color:#7A8EA0;margin-top:4px;">PDF, DOCX, XLSX, JPG, PNG — max 10 MB</p>
+        </div>
+        <div style="margin-top:18px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#7A8EA0;margin-bottom:8px;">Required Documents</div>
+          <div class="doc-row"><span class="doc-name">📄 Customer KYC Document</span><span class="doc-status req">Required</span></div>
+          <div class="doc-row"><span class="doc-name">📄 Business Registration Certificate</span><span class="doc-status opt">Optional</span></div>
+          <div class="doc-row"><span class="doc-name">📄 Import / Export License</span><span class="doc-status opt">Optional</span></div>
+        </div>
+        <div class="ai-risk info" style="margin-top:14px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>After upload, AI scans documents and offers to auto-fill company name, registration number, and address back into Step 1.</span>
+        </div>
+      </div>
+    </div>
+  </div><!-- /step-2 -->
+
+  <!-- ════════ STEP 3: MARINE CARGO ════════ -->
+  <div class="step-view" id="step-3">
+    <div class="optionb-banner">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      AI will recommend Institute Clause based on cargo type and flag high-risk routes.
+    </div>
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left"><div class="sec-icon blue">📦</div><div><div class="sec-title">Cargo Details</div><div class="sec-sub">Type, description, value and packaging</div></div></div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div class="grid g3" style="margin-bottom:14px;">
+          <div class="form-group">
+            <label class="form-label">Type of Cargo <span class="req">*</span></label>
+            <select id="cargo-type" class="form-select" onchange="handleCargoType(this.value)">
+              <option value="">— Select —</option>
+              <option value="electronics">Electronics</option><option value="machinery">Machinery / Equipment</option>
+              <option value="general">General Merchandise</option><option value="food">Food & Perishables</option>
+              <option value="hazardous">Hazardous Goods</option><option value="raw">Raw Materials</option>
+            </select>
+          </div>
+          <div class="form-group span2"><label class="form-label">Cargo Description <span class="req">*</span></label><input class="form-input" type="text" placeholder="Detailed description of goods"></div>
+          <div class="form-group"><label class="form-label">Sum Insured (LKR) <span class="req">*</span></label><input class="form-input" type="number" placeholder="0.00"></div>
+          <div class="form-group"><label class="form-label">Currency</label><select class="form-select"><option>LKR</option><option>USD</option><option>EUR</option></select></div>
+          <div class="form-group"><label class="form-label">Package Type</label><select class="form-select"><option>Container</option><option>Bulk</option><option>Pallets</option><option>Crates</option></select></div>
+        </div>
+        <div class="ai-risk info" id="clause-suggest" style="display:none">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span id="clause-suggest-text"></span>
+        </div>
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="section-head" onclick="toggleSec(this)">
+        <div class="section-head-left"><div class="sec-icon orange">🚢</div><div><div class="sec-title">Voyage & Transport</div><div class="sec-sub">Ports, vessel, and route — AI flags high-risk corridors</div></div></div>
+        <span class="sec-toggle">▾</span>
+      </div>
+      <div class="section-body">
+        <div class="grid g4" style="margin-bottom:14px;">
+          <div class="form-group"><label class="form-label">Port of Loading <span class="req">*</span></label><input id="port-load" class="form-input" type="text" placeholder="e.g. Colombo Port" oninput="checkRoute()"></div>
+          <div class="form-group"><label class="form-label">Port of Discharge <span class="req">*</span></label><input id="port-dis" class="form-input" type="text" placeholder="e.g. Singapore" oninput="checkRoute()"></div>
+          <div class="form-group"><label class="form-label">Vessel / Flight No.</label><input class="form-input" type="text" placeholder="Vessel or flight ID"></div>
+          <div class="form-group"><label class="form-label">Bill of Lading No.</label><input class="form-input" type="text" placeholder="B/L number"></div>
+          <div class="form-group"><label class="form-label">Expected Departure</label><input class="form-input" type="date"></div>
+          <div class="form-group"><label class="form-label">Expected Arrival</label><input class="form-input" type="date"></div>
+          <div class="form-group"><label class="form-label">Mode of Transport <span class="req">*</span></label><select class="form-select"><option>Sea</option><option>Air</option><option>Land</option><option>Multimodal</option></select></div>
+          <div class="form-group">
+            <label class="form-label">
+              Institute Clause <span class="req">*</span>
+              <span class="ai-label-badge" id="ai-clause-badge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI
+              </span>
+            </label>
+            <select id="institute-clause" class="form-select"><option>Institute Cargo Clause A</option><option>Institute Cargo Clause B</option><option>Institute Cargo Clause C</option></select>
+            <div class="ai-inline-nudge" id="ai-clause-nudge" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span id="ai-clause-reason">Recommended for cargo type</span> ·
+              <button class="ai-nudge-accept" onclick="acceptClause()">Accept</button>
+              <span class="ai-nudge-sep">·</span>
+              <button class="ai-nudge-dismiss" onclick="dismissNudge('ai-clause-nudge','ai-clause-badge','institute-clause')">Dismiss</button>
+            </div>
+          </div>
+        </div>
+        <div class="ai-risk" id="route-risk" style="display:none">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span id="route-risk-text"></span>
+        </div>
+      </div>
+    </div>
+  </div><!-- /step-3 -->
+
+  <!-- STEPS 4–10: Placeholders -->
+  <div class="step-view" id="step-4"><div class="step-placeholder"><div style="font-size:36px;margin-bottom:10px;">📋</div><h3>Step 4 — Policy Forms</h3><p>Select and configure applicable policy endorsement forms.<br><br><span class="chip chip-ai">✦ AI pre-selects forms based on cargo type & customer profile</span></p></div></div>
+  <div class="step-view" id="step-5"><div class="step-placeholder"><div style="font-size:36px;margin-bottom:10px;">💸</div><h3>Step 5 — Discounts & Loadings</h3><p>Apply discount factors or risk loading adjustments.<br><br><span class="chip chip-ai">✦ AI suggests loyalty discount based on 3-year clean claim history</span></p></div></div>
+  <div class="step-view" id="step-6"><div class="step-placeholder"><div style="font-size:36px;margin-bottom:10px;">🧾</div><h3>Step 6 — Tax / Charges</h3><p>Applicable taxes and government levies.<br><br><span class="chip chip-ai">✦ AI auto-applies correct tax rates based on VAT status & jurisdiction</span></p></div></div>
+  <div class="step-view" id="step-7"><div class="step-placeholder"><div style="font-size:36px;margin-bottom:10px;">📝</div><h3>Step 7 — Cover Note</h3><p>Issue a temporary cover note while the policy is processed.<br><br><span class="chip chip-ai">✦ AI drafts the cover note in one click using all entered details</span></p></div></div>
+  <div class="step-view" id="step-8"><div class="step-placeholder"><div style="font-size:36px;margin-bottom:10px;">🏦</div><h3>Step 8 — Brokerage</h3><p>Broker commission rates and split arrangements.<br><br><span class="chip chip-ai">✦ AI pre-fills last used broker rate: Agent Pradeep Silva at 8%</span></p></div></div>
+  <div class="step-view" id="step-9"><div class="step-placeholder"><div style="font-size:36px;margin-bottom:10px;">💳</div><h3>Step 9 — Payor</h3><p>Premium payer details and payment schedule.<br><br><span class="chip chip-ai">✦ AI suggests instalment schedule based on credit terms</span></p></div></div>
+  <div class="step-view" id="step-10"><div class="step-placeholder"><div style="font-size:36px;margin-bottom:10px;">⚙️</div><h3>Step 10 — Business Rules</h3><p>Automated underwriting rule validations.<br><br><span class="chip chip-ai">✦ AI ran live pre-checks — 0 issues flagged. Ready to proceed.</span></p></div></div>
+
+  <!-- ════════ STEP 11: REVIEW ════════ -->
+  <div class="step-view" id="step-11">
+    <div class="ai-summary">
+      <div class="ai-summary-hdr">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3EC9A7" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>AI Quote Summary</span>
+        <span class="chip chip-ai" style="margin-left:auto;">Auto-generated</span>
+      </div>
+      <p>This is a <strong>6-month Marine Cargo Insurance (Conventional)</strong> policy for <strong>HNB Exports (Pvt) Ltd</strong>, covering <strong>Electronics</strong> shipped from <strong>Colombo Port</strong> to <strong>Singapore</strong> under <strong>Institute Cargo Clause A</strong>, with a sum insured of <strong>LKR 12,500,000</strong>. Policy runs from <strong>01 May 2026 to 31 Oct 2026</strong> (184 days) on a Pro Rate basis. Business sourced directly, introduced by <strong>Agent Pradeep Silva</strong>. Customer risk profile: <strong>Low</strong>. No PEP flags detected.</p>
+    </div>
+    <div class="review-section"><h4>👤 Customer</h4>
+      <div class="review-row"><span class="review-key">Corporate Name</span><span class="review-val">HNB Exports (Pvt) Ltd</span></div>
+      <div class="review-row"><span class="review-key">Customer Type</span><span class="review-val">Corporate</span></div>
+      <div class="review-row"><span class="review-key">Source of Business</span><span class="review-val">Direct</span></div>
+      <div class="review-row"><span class="review-key">VAT Type</span><span class="review-val">Non Registered VAT</span></div>
+      <div class="review-row"><span class="review-key">KYC / PEP</span><span class="review-val" style="color:#3EC9A7;">✅ Cleared</span></div>
+    </div>
+    <div class="review-section"><h4>📅 Policy Terms</h4>
+      <div class="review-row"><span class="review-key">Inception Date</span><span class="review-val">01 May 2026</span></div>
+      <div class="review-row"><span class="review-key">Expiration Date</span><span class="review-val">31 Oct 2026 (184 days)</span></div>
+      <div class="review-row"><span class="review-key">Policy Term</span><span class="review-val">6 Months</span></div>
+      <div class="review-row"><span class="review-key">Calculation Type</span><span class="review-val">Pro Rate</span></div>
+    </div>
+    <div class="review-section"><h4>⚓ Cargo & Voyage</h4>
+      <div class="review-row"><span class="review-key">Cargo Type</span><span class="review-val">Electronics</span></div>
+      <div class="review-row"><span class="review-key">Sum Insured</span><span class="review-val">LKR 12,500,000</span></div>
+      <div class="review-row"><span class="review-key">Route</span><span class="review-val">Colombo Port → Singapore</span></div>
+      <div class="review-row"><span class="review-key">Institute Clause</span><span class="review-val">Clause A</span></div>
+    </div>
+    <div style="text-align:center;padding:24px 0 12px;">
+      <button class="btn btn-next" style="padding:12px 40px;font-size:14px;" onclick="submitQuote()">✅ Submit Quote</button>
+      <p style="font-size:11.5px;color:#7A8EA0;margin-top:10px;">Generates a Full Quote reference and notifies the underwriting team.</p>
+    </div>
+  </div><!-- /step-11 -->
+
+</div><!-- /content -->
+</div><!-- /page-wrap -->
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <div class="footer-info" id="footer-info">Step 1 of 11 — Customer Details</div>
+  <div class="footer-actions">
+    <button class="btn btn-ghost" onclick="saveDraft()">💾 Save Draft</button>
+    <button class="btn btn-ghost" id="btn-prev" onclick="prevStep()" disabled>← Prev</button>
+    <button class="btn btn-next" id="btn-next" onclick="nextStep()">Confirm & Next →</button>
+  </div>
+</div>
+
+<!-- ══ AI SIDE PANEL ══ -->
+<div class="ai-panel" id="ai-panel">
+  <div class="ai-panel-header">
+    <div class="ai-panel-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3EC9A7" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </div>
+    <div><div class="ai-panel-title">AI Assist</div><div class="ai-panel-sub" id="panel-context">Customer Details</div></div>
+    <button class="ai-close" onclick="togglePanel()">✕</button>
+  </div>
+
+  <!-- Step 1 panel -->
+  <div class="ai-panel-body" id="panel-1">
+    <div class="ai-card">
+      <div class="ai-card-header"><div class="ai-card-icon icon-action">⚡</div><div class="ai-card-title">22 Fields Ready to Fill</div></div>
+      <div class="ai-card-body">Existing record found for <strong>HNB Exports (Pvt) Ltd</strong> (CRP-00843). Address, VAT type, credit terms, KYC, business occupation, policy contact, and introducer history are all available.</div>
+      <div class="ai-chip-row"><span class="ai-chip" onclick="applyAutofill()">Apply all 22 fields</span><span class="ai-chip info">Preview changes</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-header"><div class="ai-card-icon icon-insight">🛡️</div><div class="ai-card-title">KYC Status</div></div>
+      <div class="ai-card-body">Customer cleared on PEP watch list. Risk profile assessed as <strong>Low</strong> based on 3 years of clean history and direct business source.</div>
+      <div class="ai-confidence"><div class="ai-conf-bar"><div class="ai-conf-fill" style="width:91%"></div></div><span class="ai-conf-label">91% confidence</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-header"><div class="ai-card-icon icon-alert">💡</div><div class="ai-card-title">Credit Terms Insight</div></div>
+      <div class="ai-card-body">Based on 3yr transaction history, <strong>LKR 5,000,000 limit</strong> with <strong>14-day credit days</strong> is recommended. This matches their previous 6 policies.</div>
+      <div class="ai-chip-row"><span class="ai-chip" onclick="applyCredit()">Apply credit terms</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-header"><div class="ai-card-icon icon-action">⚡</div><div class="ai-card-title">Quick Actions</div></div>
+      <div class="ai-chip-row">
+        <span class="ai-chip" onclick="applyAutofill()">Auto-fill all fields</span>
+        <span class="ai-chip info">View customer 360</span>
+        <span class="ai-chip" onclick="toggleSameAsCustomer()">Copy to Insured</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 panel -->
+  <div class="ai-panel-body" id="panel-3" style="display:none;">
+    <div class="ai-card">
+      <div class="ai-card-header"><div class="ai-card-icon icon-action">⚓</div><div class="ai-card-title">Institute Clause Guide</div></div>
+      <div class="ai-card-body"><strong>Clause A</strong> — All risks, recommended for electronics and high-value cargo.<br><strong>Clause B</strong> — Named perils, suitable for general & hazardous goods.<br><strong>Clause C</strong> — Basic perils, for bulk raw materials.</div>
+      <div class="ai-chip-row"><span class="ai-chip" onclick="document.getElementById('institute-clause').value='Institute Cargo Clause A'">Apply Clause A</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-header"><div class="ai-card-icon icon-alert">🗺️</div><div class="ai-card-title">Route Intelligence</div></div>
+      <div class="ai-card-body">Enter ports of loading and discharge — AI will flag high-risk corridors (piracy zones, seasonal weather, geopolitical alerts) in real time.</div>
+      <div class="ai-confidence"><div class="ai-conf-bar"><div class="ai-conf-fill" style="width:88%"></div></div><span class="ai-conf-label">88% route data coverage</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-header"><div class="ai-card-icon icon-insight">💡</div><div class="ai-card-title">Similar Quotes</div></div>
+      <div class="ai-card-body">HNB Exports had <strong>3 Marine Cargo quotes</strong> in the last 12 months — all Colombo → Singapore, Electronics, Clause A. Average sum insured: <strong>LKR 11.8M</strong>.</div>
+      <div class="ai-chip-row"><span class="ai-chip info">Pre-fill from last quote</span></div>
+    </div>
+  </div>
+
+  <!-- Generic panel for other steps -->
+  <div class="ai-panel-body" id="panel-other" style="display:none;">
+    <div class="ai-card">
+      <div class="ai-card-header"><div class="ai-card-icon icon-action">⚡</div><div class="ai-card-title">Step Readiness</div></div>
+      <div class="ai-card-body">All previous steps validated. AI pre-checks running — <strong>no issues flagged</strong> so far. Continue to fill this step.</div>
+      <div class="ai-confidence"><div class="ai-conf-bar"><div class="ai-conf-fill" style="width:100%"></div></div><span class="ai-conf-label">All checks passed</span></div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-header"><div class="ai-card-icon icon-insight">📋</div><div class="ai-card-title">Quick Actions</div></div>
+      <div class="ai-chip-row"><span class="ai-chip">Pre-fill from last quote</span><span class="ai-chip info">View policy history</span></div>
+    </div>
+  </div>
+
+  <div class="ai-footer">
+    <div class="ai-input-wrap">
+      <input class="ai-input" placeholder="Ask AI anything about this quote…">
+      <button class="ai-send">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+    <div class="ai-powered">Powered by Azentio AI · HNB-GI Platform</div>
+  </div>
+</div><!-- /ai-panel -->
+
+<script>
+let current = 1;
+const total = 11;
+const stepLabels = ['','Customer Details','Upload','Marine Cargo','Policy Forms','Discounts & Loadings','Tax / Charges','Cover Note','Brokerage','Payor','Business Rule','Quote Review'];
+let panelOpen = false;
+
+/* ── Navigation ── */
+function goTo(n) {
+  if (n < 1 || n > total) return;
+  document.querySelectorAll('.step-view').forEach(v => v.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  document.querySelectorAll('.step-item').forEach((item, i) => {
+    item.classList.remove('active','done');
+    const sc = document.getElementById('sc'+(i+1));
+    if (i + 1 < n) { item.classList.add('done'); sc.textContent = '✓'; }
+    else { sc.textContent = (i+1); }
+    if (i + 1 === n) item.classList.add('active');
+  });
+  document.getElementById('footer-info').textContent = `Step ${n} of ${total} — ${stepLabels[n]}`;
+  document.getElementById('btn-prev').disabled = (n === 1);
+  document.getElementById('btn-next').textContent = n === total ? '✓ Submit Quote' : 'Confirm & Next →';
+  current = n;
+  document.querySelector('.content').scrollTop = 0;
+  updatePanel(n);
+  document.getElementById('panel-context').textContent = stepLabels[n];
+}
+function nextStep() { if (current === total) submitQuote(); else goTo(current + 1); }
+function prevStep() { goTo(current - 1); }
+
+/* ── AI Panel ── */
+function updatePanel(n) {
+  document.getElementById('panel-1').style.display = n === 1 ? 'flex' : 'none';
+  document.getElementById('panel-3').style.display = n === 3 ? 'flex' : 'none';
+  document.getElementById('panel-other').style.display = (n !== 1 && n !== 3) ? 'flex' : 'none';
+}
+function togglePanel() {
+  panelOpen = !panelOpen;
+  document.getElementById('ai-panel').classList.toggle('open', panelOpen);
+  document.getElementById('page-wrap').classList.toggle('panel-open', panelOpen);
+  const btn = document.getElementById('ai-nav-btn');
+  btn.innerHTML = panelOpen
+    ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close AI`
+    : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> AI Assist`;
+}
+
+/* ── Section toggle ── */
+function toggleSec(header) {
+  const body = header.nextElementSibling;
+  const tog = header.querySelector('.sec-toggle');
+  body.classList.toggle('hidden');
+  tog.classList.toggle('closed', body.classList.contains('hidden'));
+  header.classList.toggle('collapsed', body.classList.contains('hidden'));
+}
+
+/* ── Accept / Dismiss nudge ── */
+function acceptNudge(nudgeId, fieldId) {
+  document.getElementById(nudgeId).innerHTML =
+    '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3EC9A7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <span style="color:#3EC9A7;">Accepted</span>';
+  const f = document.getElementById(fieldId);
+  if (f) { f.classList.remove('ai-suggested'); f.style.borderColor='#3EC9A7'; }
+}
+function dismissNudge(nudgeId, badgeId, fieldId) {
+  document.getElementById(nudgeId).remove();
+  const badge = document.getElementById(badgeId);
+  if (badge) badge.style.display = 'none';
+  const f = document.getElementById(fieldId);
+  if (f) { f.classList.remove('ai-suggested'); f.style.borderColor=''; }
+}
+
+/* ── Corp name → show AI suggestion ── */
+function handleCorpName(val) {
+  const suggest = document.getElementById('ai-corp-suggest');
+  if (val.toLowerCase().includes('hnb') || val.toLowerCase().includes('export')) {
+    suggest.style.display = 'flex';
+  } else {
+    suggest.style.display = 'none';
+  }
+  updateReadiness();
+}
+
+/* ── Autofill from existing record ── */
+function applyAutofill() {
+  // Core customer fields
+  setAIField('corp-name', 'HNB Exports (Pvt) Ltd', false);
+  setAIField('cust-code', 'CRP-00843', false);
+  setAIField('head-office', 'HNB Tower, Colombo 02', true, 'ai-hq-nudge', 'ai-hq-badge');
+  setAIField('tin-val', 'TIN-2024-88321', false);
+  // Source and VAT nudges
+  showNudge('source-biz', 'ai-source-nudge', 'ai-source-badge', 'Direct');
+  showNudge('vat-type', 'ai-vat-nudge', 'ai-vat-badge', 'non');
+  // ID type suggestion for corporate
+  setAIField('id-type', 'Business Registration', true, 'ai-idtype-nudge', 'ai-idtype-badge');
+  // Address fields with nudges
+  setAIField('addr1', 'No. 479, T.B. Jayah Mawatha', true, 'ai-addr-nudge', 'ai-addr-badge');
+  setAIField('postal', '00300', false);
+  setAIField('city-val', 'Colombo', true, 'ai-city-nudge', 'ai-city-badge');
+  setAIField('district-val', 'Colombo', true, 'ai-dist-nudge', 'ai-dist-badge');
+  setAIField('state-val', 'Western Province', true, 'ai-state-nudge', 'ai-state-badge');
+  // Classification
+  setAIField('loyalty-val', 'Gold', true, 'ai-loyalty-nudge', 'ai-loyalty-badge');
+  setAIField('credit-limit', '5000000', true, 'ai-credit-nudge', 'ai-credit-badge');
+  setAIField('credit-days', '14', true, 'ai-days-nudge', 'ai-days-badge');
+  // Additional Info
+  setAIField('biz-occ', 'Import / Export Trading', true, 'ai-occ-nudge', 'ai-occ-badge');
+  document.getElementById('ai-coo-suggest').style.display = 'flex';
+  // Policy Contact
+  setAIField('policy-phone', '+94 11 2 472 472', true, 'ai-pphone-nudge', 'ai-pphone-badge');
+  setAIField('policy-email', 'insurance@hnbexports.lk', true, 'ai-pemail-nudge', 'ai-pemail-badge');
+  // Introducer
+  setAIField('intro1', 'Agent Pradeep Silva', true, 'ai-intro-nudge', 'ai-intro-badge');
+  // Quote settings
+  document.getElementById('ai-ppw-nudge').style.display = 'flex';
+  document.getElementById('ai-ppw-badge').style.display = 'inline-flex';
+  document.getElementById('ppw-days').classList.add('ai-suggested');
+  document.getElementById('ai-qvalid-hint').style.display = 'flex';
+
+  document.getElementById('ai-corp-suggest').style.display = 'none';
+  document.getElementById('autofill-count').textContent = '22 fields';
+  updateReadiness(78);
+}
+function setAIField(id, val, showNudgeFlag, nudgeId, badgeId) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.value = val;
+  if (showNudgeFlag && nudgeId) {
+    el.classList.add('ai-suggested');
+    document.getElementById(nudgeId).style.display = 'flex';
+    document.getElementById(badgeId).style.display = 'inline-flex';
+  }
+}
+function showNudge(fieldId, nudgeId, badgeId, val) {
+  const el = document.getElementById(fieldId);
+  if (el) { el.value = val; el.classList.add('ai-suggested'); }
+  document.getElementById(nudgeId).style.display = 'flex';
+  document.getElementById(badgeId).style.display = 'inline-flex';
+}
+
+/* ── PEP ID screening ── */
+let pepTimer;
+function handleIDEntry(val) {
+  clearTimeout(pepTimer);
+  if (val.length >= 6) {
+    const check = document.getElementById('ai-pep-check');
+    check.style.display = 'flex';
+    check.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Screening against PEP watch list…';
+    pepTimer = setTimeout(() => {
+      check.style.display = 'none';
+      const ok = document.getElementById('pep-ok-flag');
+      ok.style.display = 'flex';
+      // Show risk nudge
+      document.getElementById('ai-risk-nudge').style.display = 'flex';
+      document.getElementById('ai-risk-badge').style.display = 'inline-flex';
+      document.getElementById('risk-profile').classList.add('ai-suggested');
+    }, 1800);
+  }
+}
+
+/* ── PEP toggle ── */
+function togglePEP(val) {
+  document.getElementById('pep-block').classList.toggle('show', val === 'pep' || val === 'related');
+}
+
+/* ── Previously insured ── */
+function togglePrevInsurer(checked) {
+  document.getElementById('prev-insurer-block').classList.toggle('show', checked);
+}
+
+/* ── Same as customer ── */
+function toggleSameAsCustomer() {
+  const cb = document.getElementById('same-as-cb');
+  const fields = document.getElementById('insured-fields');
+  const isNowChecked = !cb.checked;
+  if (isNowChecked) {
+    document.getElementById('ins-name').value = document.getElementById('corp-name').value || 'HNB Exports (Pvt) Ltd';
+    document.getElementById('ins-addr').value = document.getElementById('addr1').value;
+    document.getElementById('ins-city').value = document.getElementById('city-val').value;
+    document.getElementById('ins-type').value = 'Corporate';
+    fields.style.opacity = '0.55';
+    fields.style.pointerEvents = 'none';
+  } else {
+    fields.style.opacity = '';
+    fields.style.pointerEvents = '';
+  }
+}
+
+/* ── Postal lookup ── */
+function handlePostal(val) {
+  document.getElementById('ai-postal-suggest').style.display = val.length >= 5 ? 'flex' : 'none';
+}
+function applyPostal() {
+  setAIField('city-val', 'Colombo', true, 'ai-city-nudge', 'ai-city-badge');
+  setAIField('district-val', 'Colombo', true, 'ai-dist-nudge', 'ai-dist-badge');
+  setAIField('state-val', 'Western Province', true, 'ai-state-nudge', 'ai-state-badge');
+  document.getElementById('country-val').value = 'Sri Lanka';
+  document.getElementById('ai-postal-suggest').style.display = 'none';
+}
+
+/* ── Credit apply ── */
+function applyCredit() {
+  document.getElementById('credit-limit').value = '5000000';
+  document.getElementById('credit-days').value = '14';
+  document.getElementById('ai-credit-nudge').innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3EC9A7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <span style="color:#3EC9A7;">Accepted</span>';
+  document.getElementById('ai-days-nudge').innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3EC9A7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <span style="color:#3EC9A7;">Accepted</span>';
+}
+
+/* ── Marine cargo: clause suggestion ── */
+function handleCargoType(val) {
+  const box = document.getElementById('clause-suggest');
+  const txt = document.getElementById('clause-suggest-text');
+  const clauseBadge = document.getElementById('ai-clause-badge');
+  const clauseNudge = document.getElementById('ai-clause-nudge');
+  const clauseReason = document.getElementById('ai-clause-reason');
+  const map = {
+    electronics:{ c:'Institute Cargo Clause A', msg:'<strong>Clause A (all-risk)</strong> recommended — electronics are high-value and fragile.' },
+    machinery:  { c:'Institute Cargo Clause A', msg:'<strong>Clause A</strong> covers machinery during loading/unloading risks.' },
+    food:       { c:'Institute Cargo Clause A', msg:'<strong>Clause A</strong> needed to cover temperature variation and spoilage.' },
+    hazardous:  { c:'Institute Cargo Clause B', msg:'<strong>Clause B</strong> with specialist endorsements recommended for hazardous goods.' },
+    general:    { c:'Institute Cargo Clause B', msg:'<strong>Clause B</strong> is standard for general merchandise.' },
+    raw:        { c:'Institute Cargo Clause C', msg:'<strong>Clause C</strong> is sufficient for bulk raw materials on established routes.' },
+  };
+  if (map[val]) {
+    txt.innerHTML = map[val].msg;
+    box.style.display = 'flex';
+    document.getElementById('institute-clause').value = map[val].c;
+    document.getElementById('institute-clause').classList.add('ai-suggested');
+    clauseBadge.style.display = 'inline-flex';
+    clauseNudge.style.display = 'flex';
+    clauseReason.textContent = 'Recommended for ' + val + ' cargo';
+  } else {
+    box.style.display = 'none';
+  }
+}
+function acceptClause() {
+  document.getElementById('ai-clause-nudge').innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3EC9A7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <span style="color:#3EC9A7;">Accepted</span>';
+  document.getElementById('institute-clause').classList.remove('ai-suggested');
+  document.getElementById('institute-clause').style.borderColor = '#3EC9A7';
+}
+
+/* ── Route risk ── */
+function checkRoute() {
+  const load = document.getElementById('port-load').value.toLowerCase();
+  const dis  = document.getElementById('port-dis').value.toLowerCase();
+  const box  = document.getElementById('route-risk');
+  const txt  = document.getElementById('route-risk-text');
+  const risky = ['aden','gulf of aden','somalia','red sea','gulf of guinea','hormuz'];
+  const combined = load + ' ' + dis;
+  const hit = risky.find(r => combined.includes(r));
+  if (hit) {
+    box.className = 'ai-risk warn';
+    txt.innerHTML = `High-risk corridor detected (<strong>${hit}</strong>). Piracy / war risk endorsement may be required. Flagged for underwriter review.`;
+    box.style.display = 'flex';
+  } else if (load.length > 3 && dis.length > 3) {
+    box.className = 'ai-risk ok';
+    txt.innerHTML = '✅ Route assessed — no elevated risk flags for this corridor.';
+    box.style.display = 'flex';
+  } else {
+    box.style.display = 'none';
+  }
+}
+
+/* ── Readiness ── */
+function updateReadiness(pct) {
+  const val = pct || 8;
+  document.getElementById('readiness-fill').style.width = val + '%';
+  document.getElementById('readiness-pct').textContent = val + '%';
+  document.getElementById('readiness-issues').textContent = val < 50 ? ' · Several required fields remaining' : val < 80 ? ' · A few fields still needed' : ' · Almost complete';
+}
+
+/* ── Directors ── */
+let dirCount = 1;
+function addDirector() {
+  dirCount++;
+  const list = document.getElementById('director-list');
+  const div = document.createElement('div');
+  div.style.cssText = 'margin-top:14px;border-top:1px solid #E2E8F0;padding-top:14px;';
+  div.innerHTML = `<div style="font-size:11.5px;font-weight:600;color:#7A8EA0;margin-bottom:8px;">Director / Shareholder #${dirCount}</div>
+    <div class="grid g4">
+      <div class="form-group"><label class="form-label">Type of Party</label><input class="form-input" type="text" placeholder="Director / Shareholder"></div>
+      <div class="form-group"><label class="form-label">ID Type</label><select class="form-select"><option value="">— Select —</option><option>National ID</option><option>Passport</option></select></div>
+      <div class="form-group"><label class="form-label">ID Number</label><input class="form-input" type="text" placeholder="ID number"></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="email@company.com"></div>
+    </div>`;
+  list.appendChild(div);
+}
+
+/* ── ID Type handler — suggest Business Registration for Corporate ── */
+function handleIDTypeChange(val) {
+  // Show nudge only if not yet manually selected
+  if (!val) {
+    document.getElementById('ai-idtype-nudge').style.display = 'flex';
+    document.getElementById('ai-idtype-badge').style.display = 'inline-flex';
+    document.getElementById('id-type').classList.add('ai-suggested');
+  }
+}
+
+/* ── Business Occupation — live suggestion on typing ── */
+const bizOccMap = {
+  import: 'Import / Export Trading', export: 'Import / Export Trading',
+  trade: 'General Trading', manufactur: 'Manufacturing & Distribution',
+  ship: 'Shipping & Logistics', logistics: 'Shipping & Logistics',
+  pharma: 'Pharmaceutical Trading', chemical: 'Chemical Trading'
+};
+function handleBizOcc(val) {
+  const lower = val.toLowerCase();
+  const match = Object.keys(bizOccMap).find(k => lower.includes(k));
+  const suggest = document.getElementById('ai-occ-suggest');
+  if (match && val.length > 2 && document.getElementById('biz-occ').value !== bizOccMap[match]) {
+    document.getElementById('ai-occ-val').textContent = bizOccMap[match];
+    suggest.style.display = 'flex';
+  } else {
+    suggest.style.display = 'none';
+  }
+}
+function applyBizOcc() {
+  const val = document.getElementById('ai-occ-val').textContent;
+  setAIField('biz-occ', val, true, 'ai-occ-nudge', 'ai-occ-badge');
+  document.getElementById('ai-occ-suggest').style.display = 'none';
+}
+
+/* ── Countries of Operation — apply suggestion ── */
+function applyCountries() {
+  document.getElementById('countries-op').value = 'Sri Lanka, Singapore, UAE, India';
+  document.getElementById('ai-coo-badge').style.display = 'inline-flex';
+  document.getElementById('ai-coo-suggest').style.display = 'none';
+}
+
+/* ── Old Policy No. → renewal detection ── */
+let renewalTimer;
+function handleOldPolicy(val) {
+  clearTimeout(renewalTimer);
+  const suggest = document.getElementById('ai-renewal-suggest');
+  if (val.trim().length > 4) {
+    renewalTimer = setTimeout(() => {
+      document.getElementById('ai-renewal-text').textContent = `Policy ${val.toUpperCase()} expired 30 Apr 2026`;
+      suggest.style.display = 'flex';
+    }, 900);
+  } else {
+    suggest.style.display = 'none';
+  }
+}
+function applyRenewal() {
+  showNudge('biz-type', 'ai-btype-nudge', 'ai-btype-badge', 'Renewal');
+  document.getElementById('ai-renewal-suggest').innerHTML =
+    '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3EC9A7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <span style="color:#3EC9A7;">Business Type set to Renewal</span>';
+}
+
+/* ── Quote Valid Days — contextual hint ── */
+function handleQuoteValid(val) {
+  const hint = document.getElementById('ai-qvalid-hint');
+  const txt = document.getElementById('ai-qvalid-text');
+  hint.style.display = 'flex';
+  if (val == 30) {
+    txt.textContent = '30 days is standard for Marine Cargo quotes.';
+    hint.style.color = '#7A9A8A';
+  } else if (val < 15) {
+    txt.innerHTML = '⚠️ Short validity — customer may not have enough time to review.';
+  } else if (val > 60) {
+    txt.innerHTML = '⚠️ Extended validity above 60 days may require underwriter approval.';
+  } else {
+    txt.textContent = `${val} days validity noted.`;
+  }
+}
+
+/* ── Actions ── */
+function saveDraft() { alert('✅ Draft saved!\n\nReference: FQ-DRAFT-' + Date.now().toString().slice(-6)); }
+function submitQuote() { alert('🎉 Quote submitted!\n\nFull Quote Reference: FQ-2026-00124\nStatus: Pending Underwriter Review'); }
+
+/* Init — auto-open panel subtly after 800ms, then show ID type nudge */
+setTimeout(() => {
+  if (!panelOpen) togglePanel();
+}, 800);
+// Show ID type nudge on load (Corporate is default customer type)
+setTimeout(() => {
+  document.getElementById('ai-idtype-nudge').style.display = 'flex';
+  document.getElementById('ai-idtype-badge').style.display = 'inline-flex';
+  document.getElementById('id-type').classList.add('ai-suggested');
+  // Show Countries of Operation hint
+  document.getElementById('ai-coo-suggest').style.display = 'flex';
+  // Show Quote Valid Days standard hint
+  document.getElementById('ai-qvalid-hint').style.display = 'flex';
+}, 1400);
+</script>
+</body>
+</html>
